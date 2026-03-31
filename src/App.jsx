@@ -8,7 +8,9 @@ const App = () => {
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("notes"));
-    setNotes(data);
+    if (data !== "") {
+      setNotes(data);
+    }
   }, []);
 
   useEffect(() => {

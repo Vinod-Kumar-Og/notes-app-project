@@ -8,7 +8,9 @@ const App = () => {
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("notes"));
-    if (data !== "") {
+    if (data == null) {
+      ""
+    } else {
       setNotes(data);
     }
   }, []);
@@ -71,16 +73,20 @@ const App = () => {
       <div className="overflow-auto py-10 lg:w-1/2 lg:mx-5 lg:py-0">
         <h2 className="mb-3 text-2xl">Recent Notes</h2>
         <div className="flex flex-wrap gap-4">
-          {notes.map((note, index) => {
-            return (
-              <NoteCard
-                key={index}
-                index={index}
-                deleteNote={deleteNote}
-                note={note}
-              />
-            );
-          })}
+          {notes == "" ? (
+            <div>No notes avilable</div>
+          ) : (
+            notes.map((note, index) => {
+              return (
+                <NoteCard
+                  key={index}
+                  index={index}
+                  deleteNote={deleteNote}
+                  note={note}
+                />
+              );
+            })
+          )}
         </div>
       </div>
     </div>
